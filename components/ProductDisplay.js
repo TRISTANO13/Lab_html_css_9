@@ -32,7 +32,7 @@ app.component('product-display', {
           <h2>{{ productBrand }}</h2>
           <p v-if="inStock">In Stock</p>
           <p v-else>Out of Stock</p>
-          <p>Shipping: {{ shipping }}</p>
+          <p>Price: {{ shipping }}</p>
           <p>{{ TrackList }}</p>
 
           <ul>
@@ -60,6 +60,7 @@ app.component('product-display', {
         {
           id: 340,
           name: 'QALF',
+          price: 49.99,
           color: '#000000',
           image: './assets/images/QALF.jpg',
           quantity: 0,
@@ -68,6 +69,7 @@ app.component('product-display', {
         {
           id: 341,
           name: 'QALF Infinity',
+          price: 59.99,
           color: '#949494',
           image: './assets/images/QALF_Infinity.webp',
           quantity: 50,
@@ -76,6 +78,7 @@ app.component('product-display', {
         {
           id: 342,
           name: 'QALF Live',
+          price: 74.99,
           color: 'red',
           image: './assets/images/QALF_Live.webp',
           quantity: 100,
@@ -93,6 +96,7 @@ app.component('product-display', {
       this.selectedVariant = index;
       this.product = this.variants[index].name;
       this.currentDetails = this.variants[index].details;
+      this.price = this.variants[index].price;  
     },
     addReview(review) {
       this.reviews.push(review)
@@ -112,10 +116,7 @@ app.component('product-display', {
       return this.variants[this.selectedVariant].quantity
     },
     shipping() {
-      if (this.premium) {
-        return 'Free'
-      }
-      return 2.99
+      return this.variants[this.selectedVariant].price
     },
     TrackList() {
       return 'Tracklist :'
